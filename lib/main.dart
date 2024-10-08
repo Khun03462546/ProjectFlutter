@@ -1,4 +1,8 @@
+import 'package:account/Screen/form_screen.dart';
+import 'package:account/Screen/home_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:account/provider/transaction_provider.dart';
 
 void main() {
   runApp(const MyApp());
@@ -6,34 +10,60 @@ void main() {
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
+
+  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        backgroundColor: const Color.fromARGB(255, 187, 142, 125),
-        appBar: AppBar(
-          title: Text('Mr.Art Toy'),
-          titleTextStyle: TextStyle(
-            color: Colors.white,
-            fontSize: 35.0,
-            fontWeight: FontWeight.bold,
-            ),
-          backgroundColor: Colors.brown,
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context) {
+          return TransactionProvider();
+        }),
+      ],
+      child: MaterialApp(
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          colorScheme: ColorScheme.fromSeed(seedColor: const Color.fromARGB(255, 209, 172, 158)),
+          useMaterial3: true,
         ),
-        body: Center(
-          child: Container(
-            padding: EdgeInsets.all(8), // เพิ่ม padding รอบรูปภาพ
-            decoration: BoxDecoration(
-              border: Border.all(
-                color: Colors.brown, // สีของกรอบ
-                width: 5, // ความหนาของกรอบ
-              ),
-              borderRadius: BorderRadius.circular(12), // ทำให้กรอบมีมุมโค้งมน
-            ),
-            child: Image.network('https://cdn.ennxo.com/content/uploads/1600/%E0%B8%84%E0%B8%AD%E0%B8%A5%E0%B9%80%E0%B8%A5%E0%B8%81%E0%B8%8A%E0%B8%B1%E0%B8%99-skullpanda-candy-monster-town-series_1.webp'), // ใส่รูปภาพ
-          ),
-        ),
+        home: const MyHomePage(),
       ),
     );
+  }
+}
+
+class MyHomePage extends StatefulWidget {
+  const MyHomePage({super.key});
+
+  @override
+  State<MyHomePage> createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    Provider.of<TransactionProvider>(context, listen: false).initData();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return DefaultTabController(
+        length: 2,
+        child: Scaffold(
+          body: TabBarView(
+            children: [
+              HomeScreen(),
+              FormScreen(),
+            ],
+          ),
+          bottomNavigationBar: TabBar(
+            tabs: [
+              Tab(text: "รายการโมเดล", icon: Icon(Icons.list),),
+              Tab(text: "เพิ่มข้อมูล", icon: Icon(Icons.add),),
+            ],
+          ),
+        ));
   }
 }
