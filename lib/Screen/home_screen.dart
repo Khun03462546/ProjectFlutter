@@ -51,7 +51,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     margin:
                         const EdgeInsets.symmetric(vertical: 5, horizontal: 8),
                     child: ListTile(
-                      title: Text(statement.title),
+                      title: Text(statement.Name_model),
                       subtitle: Text(DateFormat('dd MMM yyyy hh:mm:ss')
                           .format(statement.date)),
                       leading: CircleAvatar(

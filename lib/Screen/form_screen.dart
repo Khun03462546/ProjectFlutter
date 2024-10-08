@@ -8,7 +8,9 @@ class FormScreen extends StatelessWidget {
   FormScreen({super.key});
 
   final formKey = GlobalKey<FormState>();
-  final titleController = TextEditingController();
+  final Name_model = TextEditingController();
+  final Series = TextEditingController();
+  final Name = TextEditingController();
   final amountController = TextEditingController();
 
   @override
@@ -23,10 +25,23 @@ class FormScreen extends StatelessWidget {
               children: [
                 TextFormField(
                   decoration: const InputDecoration(
+                    labelText: 'ชื่อค่าย',
+                  ),
+                  autofocus: false,
+                  controller: Name_model,
+                  validator: (String? str) {
+                    if (str!.isEmpty) {
+                      return 'กรุณากรอกข้อมูล';
+                    }
+                    return null;
+                  },
+                ),
+                TextFormField(
+                  decoration: const InputDecoration(
                     labelText: 'ชื่อซีรี่ย์',
                   ),
                   autofocus: false,
-                  controller: titleController,
+                  controller: Series,
                   validator: (String? str) {
                     if (str!.isEmpty) {
                       return 'กรุณากรอกข้อมูล';
@@ -39,7 +54,7 @@ class FormScreen extends StatelessWidget {
                     labelText: 'ชื่อโมเดล',
                   ),
                   autofocus: false,
-                  controller: titleController,
+                  controller: Name,
                   validator: (String? str) {
                     if (str!.isEmpty) {
                       return 'กรุณากรอกข้อมูล';
@@ -72,7 +87,9 @@ class FormScreen extends StatelessWidget {
                         // create transaction data object
                         var statement = Transactions(
                             keyID: null,
-                            title: titleController.text,
+                            Name_model: Name_model.text,
+                            Series:Series.text,
+                            Name: Name.text,
                             amount: double.parse(amountController.text),
                             date: DateTime.now());
 

@@ -23,7 +23,7 @@ class _EditScreenState extends State<EditScreen> {
 
   @override
   Widget build(BuildContext context) {
-    titleController.text = widget.statement.title;
+    titleController.text = widget.statement.Camp_name;
     amountController.text = widget.statement.amount.toString();
     return Scaffold(
         appBar: AppBar(
@@ -47,7 +47,19 @@ class _EditScreenState extends State<EditScreen> {
                 ),
                 TextFormField(
                   decoration: const InputDecoration(
-                    labelText: 'ชื่อรายการ',
+                    labelText: 'ชื่อซีรี่ย์',
+                  ),
+                  autofocus: false,
+                  controller: titleController,
+                  validator: (String? str) {
+                    if (str!.isEmpty) {
+                      return 'กรุณากรอกข้อมูล';
+                    }
+                  },
+                ),
+                 TextFormField(
+                  decoration: const InputDecoration(
+                    labelText: 'ชื่อโมเดล',
                   ),
                   autofocus: false,
                   controller: titleController,
@@ -59,7 +71,7 @@ class _EditScreenState extends State<EditScreen> {
                 ),
                 TextFormField(
                   decoration: const InputDecoration(
-                    labelText: 'จำนวนเงิน',
+                    labelText: 'ราคา',
                   ),
                   keyboardType: TextInputType.number,
                   controller: amountController,
@@ -81,7 +93,8 @@ class _EditScreenState extends State<EditScreen> {
                         // create transaction data object
                         var statement = Transactions(
                             keyID: widget.statement.keyID,
-                            title: titleController.text,
+                            Camp_name: titleController.text,
+                            Series: ,
                             amount: double.parse(amountController.text),
                             date: DateTime.now());
 
