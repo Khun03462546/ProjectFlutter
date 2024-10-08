@@ -39,7 +39,7 @@ class _HomeScreenState extends State<HomeScreen> {
           builder: (context, TransactionProvider provider, Widget? child) {
             if (provider.transactions.isEmpty) {
               return const Center(
-                child: Text('ไม่มีรายการ'),
+                child: Text('ไม่มีข้อมูลโมเดล'),
               );
             } else {
               return ListView.builder(

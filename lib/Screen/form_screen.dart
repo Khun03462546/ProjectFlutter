@@ -15,7 +15,7 @@ class FormScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text('แบบฟอร์มข้อมูล'),
+          title: const Text('การเพื่มข้อมูลโมเดล'),
         ),
         body: Form(
             key: formKey,
@@ -23,7 +23,7 @@ class FormScreen extends StatelessWidget {
               children: [
                 TextFormField(
                   decoration: const InputDecoration(
-                    labelText: 'ชื่อรายการ',
+                    labelText: 'ชื่อซีรี่ย์',
                   ),
                   autofocus: false,
                   controller: titleController,
@@ -36,7 +36,20 @@ class FormScreen extends StatelessWidget {
                 ),
                 TextFormField(
                   decoration: const InputDecoration(
-                    labelText: 'จำนวนเงิน',
+                    labelText: 'ชื่อโมเดล',
+                  ),
+                  autofocus: false,
+                  controller: titleController,
+                  validator: (String? str) {
+                    if (str!.isEmpty) {
+                      return 'กรุณากรอกข้อมูล';
+                    }
+                    return null;
+                  },
+                ),
+                TextFormField(
+                  decoration: const InputDecoration(
+                    labelText: 'ราคา',
                   ),
                   keyboardType: TextInputType.number,
                   controller: amountController,

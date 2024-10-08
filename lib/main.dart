@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         title: 'Flutter Demo',
         theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(seedColor: const Color.fromARGB(255, 209, 172, 158)),
+          colorScheme: ColorScheme.fromSeed(seedColor: const Color.fromARGB(255, 192, 149, 133)),
           useMaterial3: true,
         ),
         home: const MyHomePage(),
