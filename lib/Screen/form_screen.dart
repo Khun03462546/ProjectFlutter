@@ -8,10 +8,12 @@ class FormScreen extends StatelessWidget {
   FormScreen({super.key});
 
   final formKey = GlobalKey<FormState>();
-  final Name_model = TextEditingController();
-  final Series = TextEditingController();
-  final Name = TextEditingController();
-  final amountController = TextEditingController();
+
+  final campnameController = TextEditingController();
+
+  final serierController = TextEditingController();
+  final nameController = TextEditingController();
+  final cost = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -28,38 +30,24 @@ class FormScreen extends StatelessWidget {
                     labelText: 'ชื่อค่าย',
                   ),
                   autofocus: false,
-                  controller: Name_model,
+                  controller: campnameController,
                   validator: (String? str) {
                     if (str!.isEmpty) {
                       return 'กรุณากรอกข้อมูล';
                     }
-                    return null;
                   },
                 ),
-                TextFormField(
-                  decoration: const InputDecoration(
-                    labelText: 'ชื่อซีรี่ย์',
-                  ),
-                  autofocus: false,
-                  controller: Series,
-                  validator: (String? str) {
-                    if (str!.isEmpty) {
-                      return 'กรุณากรอกข้อมูล';
-                    }
-                    return null;
-                  },
-                ),
+               
                 TextFormField(
                   decoration: const InputDecoration(
                     labelText: 'ชื่อโมเดล',
                   ),
                   autofocus: false,
-                  controller: Name,
+                  controller: nameController,
                   validator: (String? str) {
                     if (str!.isEmpty) {
                       return 'กรุณากรอกข้อมูล';
                     }
-                    return null;
                   },
                 ),
                 TextFormField(
@@ -67,7 +55,7 @@ class FormScreen extends StatelessWidget {
                     labelText: 'ราคา',
                   ),
                   keyboardType: TextInputType.number,
-                  controller: amountController,
+                  controller: cost,
                   validator: (String? input) {
                     try {
                       double amount = double.parse(input!);
@@ -77,7 +65,6 @@ class FormScreen extends StatelessWidget {
                     } catch (e) {
                       return 'กรุณากรอกข้อมูลเป็นตัวเลข';
                     }
-                    return null;
                   },
                 ),
                 TextButton(
@@ -87,10 +74,10 @@ class FormScreen extends StatelessWidget {
                         // create transaction data object
                         var statement = Transactions(
                             keyID: null,
-                            Name_model: Name_model.text,
-                            Series:Series.text,
-                            Name: Name.text,
-                            amount: double.parse(amountController.text),
+                          Camp_name:campnameController.text,
+                            Series:serierController.text,
+                            Name: nameController.text,
+                            amount: double.parse(cost.text),
                             date: DateTime.now());
 
                         // add transaction data object to provider

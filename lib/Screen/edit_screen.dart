@@ -17,14 +17,18 @@ class EditScreen extends StatefulWidget {
 class _EditScreenState extends State<EditScreen> {
   final formKey = GlobalKey<FormState>();
 
-  final titleController = TextEditingController();
+  final campnameController = TextEditingController();
 
-  final amountController = TextEditingController();
+  final seriesController= TextEditingController();
+  final nameController= TextEditingController();
+  final cost = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    titleController.text = widget.statement.Camp_name;
-    amountController.text = widget.statement.amount.toString();
+    campnameController.text = widget.statement.Camp_name;
+    seriesController.text = widget.statement.Series;
+    nameController.text = widget.statement.Name;
+    cost.text = widget.statement.amount.toString();
     return Scaffold(
         appBar: AppBar(
           title: const Text('แบบฟอร์มแก้ไขข้อมูล'),
@@ -38,7 +42,7 @@ class _EditScreenState extends State<EditScreen> {
                     labelText: 'ชื่อค่าย',
                   ),
                   autofocus: false,
-                  controller: titleController,
+                  controller: campnameController,
                   validator: (String? str) {
                     if (str!.isEmpty) {
                       return 'กรุณากรอกข้อมูล';
@@ -50,7 +54,7 @@ class _EditScreenState extends State<EditScreen> {
                     labelText: 'ชื่อซีรี่ย์',
                   ),
                   autofocus: false,
-                  controller: titleController,
+                  controller: seriesController,
                   validator: (String? str) {
                     if (str!.isEmpty) {
                       return 'กรุณากรอกข้อมูล';
@@ -62,7 +66,7 @@ class _EditScreenState extends State<EditScreen> {
                     labelText: 'ชื่อโมเดล',
                   ),
                   autofocus: false,
-                  controller: titleController,
+                  controller: nameController,
                   validator: (String? str) {
                     if (str!.isEmpty) {
                       return 'กรุณากรอกข้อมูล';
@@ -74,7 +78,7 @@ class _EditScreenState extends State<EditScreen> {
                     labelText: 'ราคา',
                   ),
                   keyboardType: TextInputType.number,
-                  controller: amountController,
+                  controller: cost,
                   validator: (String? input) {
                     try {
                       double amount = double.parse(input!);
@@ -93,9 +97,10 @@ class _EditScreenState extends State<EditScreen> {
                         // create transaction data object
                         var statement = Transactions(
                             keyID: widget.statement.keyID,
-                            Camp_name: titleController.text,
-                            Series: ,
-                            amount: double.parse(amountController.text),
+                            Camp_name: campnameController.text,
+                            Series: seriesController.text,
+                            Name: nameController.text,
+                            amount: double.parse(cost.text),
                             date: DateTime.now());
 
                         // add transaction data object to provider
@@ -109,7 +114,7 @@ class _EditScreenState extends State<EditScreen> {
                             MaterialPageRoute(
                                 fullscreenDialog: true,
                                 builder: (context) {
-                                  return MyHomePage();
+                                  return const MyHomePage();
                                 }));
                       }
                     })

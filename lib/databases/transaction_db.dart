@@ -26,7 +26,8 @@ class TransactionDB{
  
     var keyID  = store.add(db, {
       "Camp name": statement.Camp_name,
-      ""
+      "Series" :statement.Series,
+      "Name": statement.Name,
       "amount": statement.amount,
       "date": statement.date.toIso8601String()
     });
@@ -42,9 +43,9 @@ class TransactionDB{
     for (var record in snapshot) {
       transactions.add(Transactions(
         keyID: record.key,
-        Camp_name: record['title'].toString(),
-        Series: record['title'].toString(),
-        Name: record['title'].toString(),
+        Camp_name: record['Camp_name'].toString(),
+        Series: record['Series'].toString(),
+        Name: record['Name'].toString(),
         amount: double.parse(record['amount'].toString()),
         date: DateTime.parse(record['date'].toString())
       ));
@@ -59,12 +60,14 @@ class TransactionDB{
   }
  
   updateDatabase(Transactions statement) async{
-    var db = await this.openDatabase();
+    var db = await openDatabase();
     var store = intMapStoreFactory.store('expense');
     var filter = Finder(filter: Filter.equals(Field.key, statement.keyID));
     var result = store.update(db, finder: filter,  {
-      "title": statement.Camp_name,
-      "amount": statement.amount,
+      "Camp_name": statement.Camp_name,
+      "Series": statement.Series,
+      "name":statement.Name,
+      "Cost": statement.amount,
       "date": statement.date.toIso8601String()
     });
     db.close();
