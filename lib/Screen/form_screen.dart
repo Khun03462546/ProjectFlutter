@@ -35,6 +35,19 @@ class FormScreen extends StatelessWidget {
                     if (str!.isEmpty) {
                       return 'กรุณากรอกข้อมูล';
                     }
+                    
+                  },
+                ),
+                TextFormField(
+                  decoration: const InputDecoration(
+                    labelText: 'ชื่อซีรีย์',
+                  ),
+                  autofocus: false,
+                  controller: serierController,
+                  validator: (String? str) {
+                    if (str!.isEmpty) {
+                      return 'กรุณากรอกข้อมูล';
+                    }
                   },
                 ),
                
@@ -74,7 +87,7 @@ class FormScreen extends StatelessWidget {
                         // create transaction data object
                         var statement = Transactions(
                             keyID: null,
-                          Camp_name:campnameController.text,
+                            Camp_name:campnameController.text,
                             Series:serierController.text,
                             Name: nameController.text,
                             amount: double.parse(cost.text),

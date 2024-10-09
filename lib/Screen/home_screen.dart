@@ -49,13 +49,37 @@ class _HomeScreenState extends State<HomeScreen> {
                     elevation: 5,
                     margin:
                         const EdgeInsets.symmetric(vertical: 5, horizontal: 8),
+                    color: const Color.fromARGB(255, 177, 141, 128),
                     child: ListTile(
-                      title: Text(statement.Camp_name),
-                      subtitle: Text(DateFormat('dd MMM yyyy hh:mm:ss')
-                          .format(statement.date)),
+                      title: Text('Character:${statement.Camp_name}',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white
+                      ),),
+                      subtitle: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text('Serise:${statement.Series}',
+                          style: TextStyle(
+                            color: Colors.white
+                          ),),
+                          Text('Name:${statement.Name}',
+                          style: TextStyle(
+                            color: Colors.white
+                          ),),
+                          Text('Cost:${statement.amount}',
+                          style: TextStyle(
+                            color: Colors.white
+                          ),),
+                          Text(DateFormat('dd MMM yyyy \nhh:mm:ss').format(statement.date),
+                          style: TextStyle(
+                            color: Colors.white
+                          ),),
+                        ],
+                      ),
                       leading: CircleAvatar(
-                        radius: 30,
-                        child: FittedBox(
+                          radius: 30,
+                          child: FittedBox(
                           child: Text('${statement.amount}'),
                         ),
                       ),

@@ -25,7 +25,7 @@ class TransactionDB{
     var store = intMapStoreFactory.store('expense');
  
     var keyID  = store.add(db, {
-      "Camp name": statement.Camp_name,
+      "Camp_name": statement.Camp_name,
       "Series" :statement.Series,
       "Name": statement.Name,
       "amount": statement.amount,
