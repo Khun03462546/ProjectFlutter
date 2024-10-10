@@ -22,6 +22,7 @@ class _EditScreenState extends State<EditScreen> {
   final seriesController= TextEditingController();
   final nameController= TextEditingController();
   final cost = TextEditingController();
+  final image = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +32,7 @@ class _EditScreenState extends State<EditScreen> {
     cost.text = widget.statement.amount.toString();
     return Scaffold(
         appBar: AppBar(
-          title: const Text('แบบฟอร์มแก้ไขข้อมูล'),
+          title: const Text('แก้ไขข้อมูล'),
         ),
         body: Form(
             key: formKey,
@@ -87,6 +88,18 @@ class _EditScreenState extends State<EditScreen> {
                       }
                     } catch (e) {
                       return 'กรุณากรอกข้อมูลเป็นตัวเลข';
+                    }
+                  },
+                ),
+                TextFormField(
+                  decoration: const InputDecoration(
+                    labelText: 'รูปภาพ',
+                  ),
+                  autofocus: false,
+                  controller: image,
+                  validator: (String? str) {
+                    if (str!.isEmpty) {
+                      return 'กรุณากรอกข้อมูลเป็น Url';
                     }
                   },
                 ),

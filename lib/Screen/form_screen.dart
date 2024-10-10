@@ -14,6 +14,7 @@ class FormScreen extends StatelessWidget {
   final serierController = TextEditingController();
   final nameController = TextEditingController();
   final cost = TextEditingController();
+  
 
   @override
   Widget build(BuildContext context) {
@@ -80,6 +81,7 @@ class FormScreen extends StatelessWidget {
                     }
                   },
                 ),
+          
                 TextButton(
                     child: const Text('บันทึก'),
                     onPressed: () {
@@ -90,6 +92,7 @@ class FormScreen extends StatelessWidget {
                             Camp_name:campnameController.text,
                             Series:serierController.text,
                             Name: nameController.text,
+                            
                             amount: double.parse(cost.text),
                             date: DateTime.now());
 

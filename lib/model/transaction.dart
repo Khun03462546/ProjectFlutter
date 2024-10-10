@@ -5,6 +5,7 @@ class Transactions {
   final String Camp_name;
   final String Series;
   final String Name;
+ 
 
   Transactions({
     this.keyID,
@@ -13,6 +14,7 @@ class Transactions {
     required this.Name,
     required this.amount,
     required this.date,
+  
 
   });
 }
