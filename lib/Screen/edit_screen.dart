@@ -91,18 +91,6 @@ class _EditScreenState extends State<EditScreen> {
                     }
                   },
                 ),
-                TextFormField(
-                  decoration: const InputDecoration(
-                    labelText: 'รูปภาพ',
-                  ),
-                  autofocus: false,
-                  controller: image,
-                  validator: (String? str) {
-                    if (str!.isEmpty) {
-                      return 'กรุณากรอกข้อมูลเป็น Url';
-                    }
-                  },
-                ),
                 TextButton(
                     child: const Text('แก้ไขข้อมูล'),
                     onPressed: () {
